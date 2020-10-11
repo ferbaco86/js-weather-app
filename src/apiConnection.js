@@ -39,10 +39,6 @@ const apiManager = (() => {
   const getWeatherMain = async (cityName) => {
     const cityData = await getCityData(cityName);
     const weatherMain = await cityData.main;
-    console.log(weatherMain);
-    console.log(cityData.sys.country);
-    console.log(cityData.name);
-
     return weatherMain;
   };
 
