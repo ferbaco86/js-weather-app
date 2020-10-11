@@ -9,44 +9,65 @@ const weatherManager = (() => {
     }
     return message;
   };
-  const getCityData = async (lat, lon) => {
-    const weatherInfo = {};
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=hourly,minutely,alerts&appid=${owApiKey}`, { mode: 'cors' });
-    const getData = await response.json();
-    handleWeather404(getData);
-    weatherInfo.temp = getData.current.temp;
-    weatherInfo.feels_like = getData.current.feels_like;
-    return weatherInfo;
-  };
 
-  const getWeatherData = async (cityName) => {
-    const cityData = await getCityData(cityName);
-    const weatherData = await cityData.weather;
-    return weatherData;
-  };
-
-  const getWeatherMain = async (cityName) => {
-    const cityData = await getCityData(cityName);
-    const weatherMain = await cityData.main;
-    return weatherMain;
-  };
-
-  const storeWheaterInfo = (cityName) => {
+  const storeWheaterInfo = (data) => {
     const info = {
-      // name: `${getCityData(cityName).name}, ${getCityData(cityName).sys.country}`,
-      temp: getWeatherMain(cityName).temp,
-      feels: getWeatherMain(cityName).feels_like,
-      min: getWeatherMain(cityName).temp_min,
-      max: getWeatherMain(cityName).temp_max,
+      temp: data.current.temp,
+      feels: data.current.feels_like,
+      min: data.daily[0].temp.min,
+      max: data.daily[0].temp.max,
+      day1: {
+        temp: data.daily[1].temp.day,
+        min: data.daily[1].temp.min,
+        max: data.daily[1].temp.max,
+      },
+      day2: {
+        temp: data.daily[2].temp.day,
+        min: data.daily[2].temp.min,
+        max: data.daily[2].temp.max,
+      },
+      day3: {
+        temp: data.daily[3].temp.day,
+        min: data.daily[3].temp.min,
+        max: data.daily[3].temp.max,
+      },
+      day4: {
+        temp: data.daily[4].temp.day,
+        min: data.daily[4].temp.min,
+        max: data.daily[4].temp.max,
+      },
+      day5: {
+        temp: data.daily[5].temp.day,
+        min: data.daily[5].temp.min,
+        max: data.daily[5].temp.max,
+      },
+      day6: {
+        temp: data.daily[6].temp.day,
+        min: data.daily[6].temp.min,
+        max: data.daily[6].temp.max,
+      },
+      day7: {
+        temp: data.daily[7].temp.day,
+        min: data.daily[7].temp.min,
+        max: data.daily[7].temp.max,
+      },
     };
     return info;
   };
 
+  const getWeatherData = async (lat, lon) => {
+    try {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=hourly,minutely,alerts&appid=${owApiKey}`, { mode: 'cors' });
+      const getData = await response.json();
+      handleWeather404(getData);
+      return storeWheaterInfo(getData);
+    } catch (error) {
+      return error;
+    }
+  };
+
   return {
     getWeatherData,
-    getWeatherMain,
-    storeWheaterInfo,
-    getCityData,
   };
 })();
 

@@ -4,6 +4,7 @@ import geoLocation from './geolocation';
 import domManipulation from './DOMhelpers';
 import stringManipulation from './stringHelpers';
 import './style.css';
+import render from './render';
 
 const inputCity = domManipulation.getHtmlElement({ byId: 'search' });
 const matchList = domManipulation.getHtmlElement({ byId: 'matches' });
@@ -38,6 +39,7 @@ matchList.addEventListener('click', (e) => {
 
 getWeatherBtn.addEventListener('click', async (e) => {
   e.preventDefault();
-  const data = await weatherManager.getCityData(geoLocation.coordinates.lat,
+  const data = await weatherManager.getWeatherData(geoLocation.coordinates.lat,
     geoLocation.coordinates.lon);
+  render.renderCurrentWeather(inputCity.value, data);
 });
