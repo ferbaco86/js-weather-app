@@ -34,6 +34,10 @@ const domManipulation = (() => {
     element.setAttribute(attribute, value);
   };
 
+  const getHtmlAttributes = (element, attribute) => {
+    return element.getAttribute(attribute);
+  };
+
   const getHtmlElement = ({ byId = '', byQueryClass = '', byQueryAllClass = '' }) => {
     let element;
     if (byId !== '') {
@@ -70,6 +74,7 @@ const domManipulation = (() => {
     createHtmlElement,
     getHtmlElement,
     setHtmlAttributes,
+    getHtmlAttributes,
     setRequired,
     addClasses,
     removeClasses,

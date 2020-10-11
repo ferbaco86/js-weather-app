@@ -1,8 +1,6 @@
-import render from './render';
 
-const apiManager = (() => {
+const weatherManager = (() => {
   const owApiKey = process.env.WEATHER_API_KEY;
-  const iqApiKey = process.env.IQ_ACCESS_KEY;
 
   const handleWeather404 = (data) => {
     let message;
@@ -11,23 +9,14 @@ const apiManager = (() => {
     }
     return message;
   };
-  const getCityData = async (cityName) => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${owApiKey}`, { mode: 'cors' });
+  const getCityData = async (lat, lon) => {
+    const weatherInfo = {};
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=hourly,minutely,alerts&appid=${owApiKey}`, { mode: 'cors' });
     const getData = await response.json();
     handleWeather404(getData);
-    return getData;
-  };
-
-  const getCityLocation = async (cityName, matchList) => {
-    try {
-      const response = await fetch(`https://api.locationiq.com/v1/autocomplete.php?key=${iqApiKey}&q=${cityName}&limit=5&tag=place%3Acity&accept-language=en`, { mode: 'cors' });
-      const getData = await response.json();
-
-      render.renderMatches(getData, matchList);
-      return getData;
-    } catch (error) {
-      return error;
-    }
+    weatherInfo.temp = getData.current.temp;
+    weatherInfo.feels_like = getData.current.feels_like;
+    return weatherInfo;
   };
 
   const getWeatherData = async (cityName) => {
@@ -57,8 +46,8 @@ const apiManager = (() => {
     getWeatherData,
     getWeatherMain,
     storeWheaterInfo,
-    getCityLocation,
+    getCityData,
   };
 })();
 
-export default apiManager;
+export default weatherManager;

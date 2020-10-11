@@ -1,3 +1,7 @@
+.match {
+    background-color: lightgoldenrodyellow;
+}
+
 .match:hover {
     cursor: pointer;
     background-color: aquamarine;
