@@ -12,5 +12,6 @@ matchList.addEventListener('click', (e) => {
   const matchTarget = e.target;
   if (matchTarget.nodeName === 'H5') {
     inputCity.value = matchTarget.textContent;
+    matchList.innerHTML = '';
   }
 });
