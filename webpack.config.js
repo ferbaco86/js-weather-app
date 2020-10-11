@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
 module.exports = {
@@ -31,7 +32,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'style/[name].css',
     }),
-
+    new Dotenv(),
     new CssMinimizerPlugin(),
   ],
 };

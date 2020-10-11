@@ -7,10 +7,29 @@
   <title>JS Weather App</title>
 </head>
 <body>
-  <label for="cityName">CITY</label>
-  <input type="text" name="cityName" id="cityName">
-  <button type="button">Get Weather</button>
+  <section class="section">
+    <div class="columns">
+      <div class="column is-4">
+        <form class="form">
+          <div class="field">
+            <div class="control">
+              <input id="search" type="text" class="input is-primary" placeholder="Search your city...">
+            </div>
+          </div>
+          <div id="matches" class="field"></div>
+          <div class="field">
+            <div class="control">
+              <input type="submit" class="button is-primary" value="Get Weather">
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
 
-  <script src="main.js"></script>
+  </section>
+
+
+  <script src="./main.js"></script>
 </body>
 </html>

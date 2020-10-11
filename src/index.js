@@ -1,9 +1,8 @@
+import 'bulma/css/bulma.css';
 import apiManager from './apiConnection';
+import './style.css';
 
-const getWeatherBtn = document.querySelector('button');
+const inputCity = document.getElementById('search');
+const matchList = document.getElementById('matches');
 
-getWeatherBtn.addEventListener('click', () => {
-  const cityNameInput = document.getElementById('cityName').value;
-  apiManager.getWeatherData(cityNameInput);
-  apiManager.getWeatherMain(cityNameInput);
-});
+inputCity.addEventListener('input', () => apiManager.getCityLocation(inputCity.value, matchList));
