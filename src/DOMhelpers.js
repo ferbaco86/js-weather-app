@@ -26,6 +26,20 @@ const domManipulation = (() => {
     });
   };
 
+  const createImage = (source, alt, parentElement, arrayClassNames = []) => {
+    const img = new Image();
+    img.src = source;
+    img.alt = alt;
+
+    if (arrayClassNames !== []) {
+      addClasses(img, arrayClassNames);
+    }
+
+    parentElement.appendChild(img);
+
+    return img;
+  };
+
   const setInnerHtml = (element, text) => {
     element.innerHTML = text;
   };
@@ -34,9 +48,7 @@ const domManipulation = (() => {
     element.setAttribute(attribute, value);
   };
 
-  const getHtmlAttributes = (element, attribute) => {
-    return element.getAttribute(attribute);
-  };
+  const getHtmlAttributes = (element, attribute) => element.getAttribute(attribute);
 
   const getHtmlElement = ({ byId = '', byQueryClass = '', byQueryAllClass = '' }) => {
     let element;
@@ -80,6 +92,7 @@ const domManipulation = (() => {
     removeClasses,
     setInnerHtml,
     toggleClass,
+    createImage,
   };
 })();
 

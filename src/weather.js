@@ -16,6 +16,7 @@ const weatherManager = (() => {
       feels: data.current.feels_like,
       min: data.daily[0].temp.min,
       max: data.daily[0].temp.max,
+      icon: data.current.weather[0].icon,
       day1: {
         temp: data.daily[1].temp.day,
         min: data.daily[1].temp.min,

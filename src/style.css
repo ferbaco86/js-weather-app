@@ -10,3 +10,20 @@
 .country {
     color: darkgoldenrod;
 }
+
+.title.is-1 {
+    font-size: 4em !important;
+}
+
+#current-city {
+    font-size: 0.9em;
+    color: lightgray;
+}
+
+h1 {
+    margin-bottom: 1rem !important;
+}
+
+.wicon {
+    width: 100px;
+}

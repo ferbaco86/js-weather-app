@@ -1,9 +1,9 @@
 import 'bulma/css/bulma.css';
+import './style.css';
 import weatherManager from './weather';
 import geoLocation from './geolocation';
 import domManipulation from './DOMhelpers';
 import stringManipulation from './stringHelpers';
-import './style.css';
 import render from './render';
 
 const inputCity = domManipulation.getHtmlElement({ byId: 'search' });
@@ -39,7 +39,9 @@ matchList.addEventListener('click', (e) => {
 
 getWeatherBtn.addEventListener('click', async (e) => {
   e.preventDefault();
+  const form = domManipulation.getHtmlElement({ byQueryClass: '.form' });
   const data = await weatherManager.getWeatherData(geoLocation.coordinates.lat,
     geoLocation.coordinates.lon);
   render.renderCurrentWeather(inputCity.value, data);
+  form.reset();
 });
