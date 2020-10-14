@@ -13,7 +13,6 @@ const matchList = domManipulation.getHtmlElement({ byId: 'matches' });
 const getWeatherBtn = domManipulation.getHtmlElement({ byId: 'search-btn' });
 const downArrow = domManipulation.getHtmlElement({ byId: 'down-arrow' });
 const cardFooter = domManipulation.getHtmlElement({ byQueryClass: '.card-footer' });
-const tempSwitchContainer = domManipulation.getHtmlElement({ byQueryClass: '.switch-container' });
 const tempSwitch = domManipulation.getHtmlElement({ byQueryClass: '.switch' });
 const menuTransitioner = transitionHiddenElement({
   element: cardFooter,
@@ -50,21 +49,26 @@ matchList.addEventListener('click', (e) => {
   }
 });
 
-const retrieveData = async () => {
-  const weatherData = await weatherManager.getWeatherData(geoLocation.coordinates.lat,
-    geoLocation.coordinates.lon);
+const retrieveData = async (lat, lon) => {
+  const weatherData = await weatherManager.getWeatherData(lat,
+    lon);
   return weatherData;
 };
+
+const showInitialCity = async () => {
+  const data = await retrieveData('-33.4372', '-70.6506');
+  render.renderCurrentWeather(data, render.tempScale, 'Santiago, Chile');
+  geoLocation.setCoordinates('-33.4372', '-70.6506');
+};
+
+showInitialCity();
 
 getWeatherBtn.addEventListener('click', async (e) => {
   e.preventDefault();
   const form = domManipulation.getHtmlElement({ byQueryClass: '.form' });
-  const data = await retrieveData();
+  const data = await retrieveData(geoLocation.coordinates.lat, geoLocation.coordinates.lon);
   render.renderCurrentWeather(data, render.tempScale, inputCity.value);
   form.reset();
-  if (!tempSwitchContainer.classList.contains('is-switch-active')) {
-    domManipulation.addClasses(tempSwitchContainer, ['is-switch-active']);
-  }
 });
 
 downArrow.addEventListener('click', () => {
@@ -74,6 +78,6 @@ downArrow.addEventListener('click', () => {
 
 tempSwitch.addEventListener('click', async () => {
   render.tempScale = !render.tempScale;
-  const data = await retrieveData();
+  const data = await retrieveData(geoLocation.coordinates.lat, geoLocation.coordinates.lon);
   render.renderCurrentWeather(data, render.tempScale);
 });
