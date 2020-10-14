@@ -12,45 +12,47 @@ const weatherManager = (() => {
 
   const storeWheaterInfo = (data) => {
     const info = {
-      temp: data.current.temp,
-      feels: data.current.feels_like,
-      min: data.daily[0].temp.min,
-      max: data.daily[0].temp.max,
-      icon: data.current.weather[0].icon,
+      current: {
+        temp: Math.round(data.current.temp),
+        feels: Math.round(data.current.feels_like),
+        min: Math.round(data.daily[0].temp.min),
+        max: Math.round(data.daily[0].temp.max),
+        icon: data.current.weather[0].icon,
+      },
       day1: {
-        temp: data.daily[1].temp.day,
-        min: data.daily[1].temp.min,
-        max: data.daily[1].temp.max,
+        temp: Math.round(data.daily[1].temp.day),
+        min: Math.round(data.daily[1].temp.min),
+        max: Math.round(data.daily[1].temp.max),
       },
       day2: {
-        temp: data.daily[2].temp.day,
-        min: data.daily[2].temp.min,
-        max: data.daily[2].temp.max,
+        temp: Math.round(data.daily[2].temp.day),
+        min: Math.round(data.daily[2].temp.min),
+        max: Math.round(data.daily[2].temp.max),
       },
       day3: {
-        temp: data.daily[3].temp.day,
-        min: data.daily[3].temp.min,
-        max: data.daily[3].temp.max,
+        temp: Math.round(data.daily[3].temp.day),
+        min: Math.round(data.daily[3].temp.min),
+        max: Math.round(data.daily[3].temp.max),
       },
       day4: {
-        temp: data.daily[4].temp.day,
-        min: data.daily[4].temp.min,
-        max: data.daily[4].temp.max,
+        temp: Math.round(data.daily[4].temp.day),
+        min: Math.round(data.daily[4].temp.min),
+        max: Math.round(data.daily[4].temp.max),
       },
       day5: {
-        temp: data.daily[5].temp.day,
-        min: data.daily[5].temp.min,
-        max: data.daily[5].temp.max,
+        temp: Math.round(data.daily[5].temp.day),
+        min: Math.round(data.daily[5].temp.min),
+        max: Math.round(data.daily[5].temp.max),
       },
       day6: {
-        temp: data.daily[6].temp.day,
-        min: data.daily[6].temp.min,
-        max: data.daily[6].temp.max,
+        temp: Math.round(data.daily[6].temp.day),
+        min: Math.round(data.daily[6].temp.min),
+        max: Math.round(data.daily[6].temp.max),
       },
       day7: {
-        temp: data.daily[7].temp.day,
-        min: data.daily[7].temp.min,
-        max: data.daily[7].temp.max,
+        temp: Math.round(data.daily[7].temp.day),
+        min: Math.round(data.daily[7].temp.min),
+        max: Math.round(data.daily[7].temp.max),
       },
     };
     return info;

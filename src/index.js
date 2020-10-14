@@ -1,5 +1,6 @@
 import 'bulma/css/bulma.css';
 import './style.css';
+import { transitionHiddenElement } from '@cloudfour/transition-hidden-element';
 import weatherManager from './weather';
 import geoLocation from './geolocation';
 import domManipulation from './DOMhelpers';
@@ -9,6 +10,15 @@ import render from './render';
 const inputCity = domManipulation.getHtmlElement({ byId: 'search' });
 const matchList = domManipulation.getHtmlElement({ byId: 'matches' });
 const getWeatherBtn = domManipulation.getHtmlElement({ byId: 'search-btn' });
+const downArrow = domManipulation.getHtmlElement({ byId: 'down-arrow' });
+const cardFooter = domManipulation.getHtmlElement({ byQueryClass: '.card-footer' });
+const menuTransitioner = transitionHiddenElement({
+  element: cardFooter,
+  visibleClass: 'is-cf-active',
+  hideMode: 'display',
+  displayValue: 'flex',
+  timeoutDuration: '100ms',
+});
 
 const getSetCoordinates = (element) => {
   const lat = domManipulation.getHtmlAttributes(element, 'data-lat');
@@ -44,4 +54,9 @@ getWeatherBtn.addEventListener('click', async (e) => {
     geoLocation.coordinates.lon);
   render.renderCurrentWeather(inputCity.value, data);
   form.reset();
+});
+
+downArrow.addEventListener('click', () => {
+  domManipulation.toggleClass(downArrow, 'is-active');
+  menuTransitioner.toggle();
 });

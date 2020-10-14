@@ -27,3 +27,34 @@ h1 {
 .wicon {
     width: 100px;
 }
+
+#down-arrow {
+    fill: lightgray;
+    width: 3.5%;
+    margin-left: 50%;
+    margin-top: 2%;
+    margin-bottom: -5%;
+    align-self: flex-end;
+    transition: transform 300ms ease;
+}
+
+.card-footer {
+    display: none;
+    height: 0;
+    visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.is-active {
+    transform: rotate(180deg);
+}
+
+.is-cf-active {
+    visibility: visible;
+    height: 100px;
+    display: flex;
+}
+
+#down-arrow:hover {
+    cursor: pointer;
+}

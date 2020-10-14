@@ -21,7 +21,7 @@
           <div id="matches" class="field"></div>
         </form>
         <div class="card column">
-            <div class="card-content is-flex">
+            <div class="card-content">
               <div class="is-flex is-justify-content-space-between is-flex-grow-1">
                 <div class class="is-flex is-flex-direction-column">
                   <h1 class="title is-1 is-flex"><span id="current-temp">...</span><span class="is-size-7 mt-2">ºC</span></h1>
@@ -29,8 +29,16 @@
                 </div>
                 <div id="wicon-container"></div>
               </div>
+              <svg version="1.1" id="down-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 284.929 284.929">
+                <g>
+                  <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441 
+                  L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082 
+                  c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647 
+                  c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z"/>
+                </g>
+              </svg>
             </div>
-            <footer class="card-footer is-hidden">
+            <footer class="card-footer">
               <div class="card-footer-item is-flex-direction-column">
                   <h5 class="title is-5 has-text-centered">Feels like</h5>
                   <h5 class="title is-5 is-flex"><span id="current-feel">...</span><span class="is-size-7">ºC</span></h5>
@@ -55,138 +63,6 @@
         </div>
     </aside>
     <section class="section">
-      <div class="is-flex is-justify-content-center is-flex-wrap-wrap">
-        <div class="card column is-3 m-3">
-          <header class="card-header is-justify-content-center">
-            <p class="title is-3 ">...</p>
-          </header>
-            <div class="card-content is-flex is-justify-content-center">
-              <h1 class="title is-1 is-flex"><span>...</span><span class="is-size-7 mt-2">ºC</span></h1>
-            </div>
-            <footer class="card-footer">
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Min</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Max</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-            </footer>
-        </div>
-        <div class="card column is-3 m-3">
-          <header class="card-header is-justify-content-center">
-            <p class="title is-3 ">...</p>
-          </header>
-            <div class="card-content is-flex is-justify-content-center">
-              <h1 class="title is-1 is-flex"><span>...</span><span class="is-size-7 mt-2">ºC</span></h1>
-            </div>
-            <footer class="card-footer">
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Min</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Max</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-            </footer>
-        </div>
-        <div class="card column is-3 m-3">
-          <header class="card-header is-justify-content-center">
-            <p class="title is-3 ">...</p>
-          </header>
-            <div class="card-content is-flex is-justify-content-center">
-              <h1 class="title is-1 is-flex"><span>...</span><span class="is-size-7 mt-2">ºC</span></h1>
-            </div>
-            <footer class="card-footer">
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Min</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Max</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-            </footer>
-        </div>
-        <div class="card column is-3 m-3">
-          <header class="card-header is-justify-content-center">
-            <p class="title is-3 ">...</p>
-          </header>
-            <div class="card-content is-flex is-justify-content-center">
-              <h1 class="title is-1 is-flex"><span>...</span><span class="is-size-7 mt-2">ºC</span></h1>
-            </div>
-            <footer class="card-footer">
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Min</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Max</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-            </footer>
-        </div>
-        <div class="card column is-3 m-3">
-          <header class="card-header is-justify-content-center">
-            <p class="title is-3 ">...</p>
-          </header>
-            <div class="card-content is-flex is-justify-content-center">
-              <h1 class="title is-1 is-flex"><span>...</span><span class="is-size-7 mt-2">ºC</span></h1>
-            </div>
-            <footer class="card-footer">
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Min</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-              <div class="card-footer-item is-flex-direction-column">
-                <div class="title is-justify-content-center">
-                  <h5 class="title is-5 has-text-centered">Max</h5>
-                </div>
-                <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span>...</span><span class="is-size-7">ºC</span></h5>
-                </div>
-              </div>
-            </footer>
-        </div>
-      </div>
     </section>
   </main>
 

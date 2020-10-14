@@ -1,5 +1,6 @@
 import domManipulation from './DOMhelpers';
 import data from './data.json';
+import convertion from './tempConvertion';
 
 const render = (() => {
   const renderMatches = (matches, matchList) => {
@@ -29,20 +30,34 @@ const render = (() => {
     const currentFeel = domManipulation.getHtmlElement({ byId: 'current-feel' });
     const currentMin = domManipulation.getHtmlElement({ byId: 'current-min' });
     const currentMax = domManipulation.getHtmlElement({ byId: 'current-max' });
-    const currentIcon = weatherInfo.icon;
+    const currentIcon = weatherInfo.current.icon;
 
     domManipulation.setInnerHtml(cityTitle, currentCity);
-    domManipulation.setInnerHtml(currentTemp, weatherInfo.temp);
-    domManipulation.setInnerHtml(currentFeel, weatherInfo.feels);
-    domManipulation.setInnerHtml(currentMin, weatherInfo.min);
-    domManipulation.setInnerHtml(currentMax, weatherInfo.max);
+    domManipulation.setInnerHtml(currentTemp, weatherInfo.current.temp);
+    domManipulation.setInnerHtml(currentFeel, weatherInfo.current.feels);
+    domManipulation.setInnerHtml(currentMin, weatherInfo.current.min);
+    domManipulation.setInnerHtml(currentMax, weatherInfo.current.max);
 
 
     renderWeatherIcon(data, currentIcon);
   };
+
+  const renderCelsius = (weatherInfo) => {
+    const tempCelsius = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
+      .map(key => weatherInfo.current[key]);
+    return tempCelsius;
+  };
+
+  const renderFarenheit = (weatherInfo) => {
+    const tempFarenheit = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
+      .map(key => convertion.farenheitToCelsius(weatherInfo.current[key]));
+    return tempFarenheit;
+  };
   return {
     renderMatches,
     renderCurrentWeather,
+    renderCelsius,
+    renderFarenheit,
   };
 })();
 
