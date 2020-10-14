@@ -55,6 +55,16 @@ h1 {
     display: flex;
 }
 
+article {
+    display: none;
+    opacity: 0;
+    transition: all 400ms ease-in-out;
+}
+
+.is-message-active {
+    opacity: 1;
+}
+
 #down-arrow:hover {
     cursor: pointer;
 }

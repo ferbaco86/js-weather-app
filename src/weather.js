@@ -1,14 +1,7 @@
+import render from './render';
 
 const weatherManager = (() => {
   const owApiKey = process.env.WEATHER_API_KEY;
-
-  const handleWeather404 = (data) => {
-    let message;
-    if (data.cod === '404') {
-      message = "I'm sorry but the city it's not in our records";
-    }
-    return message;
-  };
 
   const storeWheaterInfo = (data) => {
     const info = {
@@ -62,9 +55,9 @@ const weatherManager = (() => {
     try {
       const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=hourly,minutely,alerts&appid=${owApiKey}`, { mode: 'cors' });
       const getData = await response.json();
-      handleWeather404(getData);
       return storeWheaterInfo(getData);
     } catch (error) {
+      render.renderError(error);
       return error;
     }
   };

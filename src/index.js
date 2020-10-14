@@ -7,6 +7,7 @@ import geoLocation from './geolocation';
 import domManipulation from './DOMhelpers';
 import stringManipulation from './stringHelpers';
 import render from './render';
+import validations from './validation';
 
 const inputCity = domManipulation.getHtmlElement({ byId: 'search' });
 const matchList = domManipulation.getHtmlElement({ byId: 'matches' });
@@ -14,12 +15,18 @@ const getWeatherBtn = domManipulation.getHtmlElement({ byId: 'search-btn' });
 const downArrow = domManipulation.getHtmlElement({ byId: 'down-arrow' });
 const cardFooter = domManipulation.getHtmlElement({ byQueryClass: '.card-footer' });
 const tempSwitch = domManipulation.getHtmlElement({ byQueryClass: '.switch' });
+const messageContainer = domManipulation.getHtmlElement({ byQueryClass: '.message' });
 const menuTransitioner = transitionHiddenElement({
   element: cardFooter,
   visibleClass: 'is-cf-active',
   hideMode: 'display',
   displayValue: 'flex',
   timeoutDuration: '100ms',
+});
+const messageTransitioner = transitionHiddenElement({
+  element: messageContainer,
+  visibleClass: 'is-message-active',
+  hideMode: 'display',
 });
 
 const getSetCoordinates = (element) => {
@@ -29,6 +36,7 @@ const getSetCoordinates = (element) => {
 };
 
 inputCity.addEventListener('input', () => {
+  validations.noInput(inputCity, messageTransitioner);
   geoLocation.getCityLocation(inputCity.value, matchList);
   matchList.childNodes.forEach(element => {
     const procInputCityStr = stringManipulation.processString(inputCity.value);
@@ -65,10 +73,20 @@ showInitialCity();
 
 getWeatherBtn.addEventListener('click', async (e) => {
   e.preventDefault();
-  const form = domManipulation.getHtmlElement({ byQueryClass: '.form' });
   const data = await retrieveData(geoLocation.coordinates.lat, geoLocation.coordinates.lon);
-  render.renderCurrentWeather(data, render.tempScale, inputCity.value);
-  form.reset();
+  const matches = domManipulation.getHtmlElement({ byQueryAllClass: '.match' });
+  const inputCheck = validations.checkInput(matches, inputCity, messageTransitioner);
+  if (inputCity.validity.valueMissing || inputCheck) {
+    render.renderError('INCORRECT CITY ON INPUT...', messageTransitioner);
+    domManipulation.addClasses(inputCity, ['is-danger']);
+  } else {
+    inputCity.setCustomValidity('');
+    domManipulation.removeClasses(inputCity, ['is-danger']);
+    messageTransitioner.hide();
+    const form = domManipulation.getHtmlElement({ byQueryClass: '.form' });
+    render.renderCurrentWeather(data, render.tempScale, inputCity.value);
+    form.reset();
+  }
 });
 
 downArrow.addEventListener('click', () => {

@@ -1,9 +1,21 @@
+
 import domManipulation from './DOMhelpers';
 import data from './data.json';
 import convertion from './tempConvertion';
 
 const render = (() => {
   const tempScale = domManipulation.getHtmlElement({ byId: 'switch' }).checked;
+
+  const renderError = (message, messageTransition) => {
+    const text = domManipulation.getHtmlElement({ byId: 'message-text' });
+    domManipulation.setInnerHtml(text, message);
+    messageTransition.show();
+  };
+
+  const removeError = () => {
+    const container = domManipulation.getHtmlElement({ byQueryClass: '.message' });
+    domManipulation.removeClasses(container, ['is-message-active']);
+  };
 
   const renderCelsius = (weatherInfo) => {
     const tempCelsius = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
@@ -78,6 +90,8 @@ const render = (() => {
     renderCurrentWeather,
     renderCelsius,
     renderFarenheit,
+    renderError,
+    removeError,
     tempScale,
   };
 })();

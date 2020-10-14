@@ -15,9 +15,18 @@
     </div>
     <aside class="section container column is-half">
         <form class="form">
+          <article class="message is-danger">
+            <div class="message-header">
+              <p>ERROR</p>
+            </div>
+            <div class="message-body">
+              <p id="message-text">
+              </p>
+            </div>
+          </article>
           <div class="field has-addons">
             <p class="control is-flex-grow-1">
-              <input id="search" type="text" class="input is-primary" placeholder="Type your city and select it from the list ...">
+              <input id="search" type="text" class="input is-primary" placeholder="Type your city and select it from the list ..." required>
             </p>
             <p class="control">
               <input id = "search-btn"type="submit" class="button is-primary" value="Get Weather">
