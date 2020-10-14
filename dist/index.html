@@ -8,6 +8,11 @@
 </head>
 <body>
   <main class="section p-6">
+    <div class="field switch-container">
+      <label for="switch">ºC</label>
+      <input id="switch" type="checkbox" name="switch" class="switch">
+      <label for="switch">ºF</label>
+    </div>
     <aside class="section container column is-half">
         <form class="form">
           <div class="field has-addons">
@@ -24,7 +29,7 @@
             <div class="card-content">
               <div class="is-flex is-justify-content-space-between is-flex-grow-1">
                 <div class class="is-flex is-flex-direction-column">
-                  <h1 class="title is-1 is-flex"><span id="current-temp">...</span><span class="is-size-7 mt-2">ºC</span></h1>
+                  <h1 class="title is-1 is-flex"><span id="current-temp">...</span><span class="is-size-7 mt-2 scale">ºC</span></h1>
                   <p class="title is-6" id=current-city>...</p>
                 </div>
                 <div id="wicon-container"></div>
@@ -41,14 +46,14 @@
             <footer class="card-footer">
               <div class="card-footer-item is-flex-direction-column">
                   <h5 class="title is-5 has-text-centered">Feels like</h5>
-                  <h5 class="title is-5 is-flex"><span id="current-feel">...</span><span class="is-size-7">ºC</span></h5>
+                  <h5 class="title is-5 is-flex"><span id="current-feel">...</span><span class="is-size-7 scale">ºC</span></h5>
               </div>
               <div class="card-footer-item is-flex-direction-column">
                 <div class="title is-justify-content-center">
                   <h5 class="title is-5 has-text-centered">Min</h5>
                 </div>
                 <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span id="current-min">...</span><span class="is-size-7">ºC</span></h5>
+                  <h5 class="title is-5 is-flex"><span id="current-min">...</span><span class="is-size-7 scale">ºC</span></h5>
                 </div>
               </div>
               <div class="card-footer-item is-flex-direction-column">
@@ -56,7 +61,7 @@
                   <h5 class="title is-5 has-text-centered">Max</h5>
                 </div>
                 <div class="has-text-centered">
-                  <h5 class="title is-5 is-flex"><span id="current-max">...</span><span class="is-size-7">ºC</span></h5>
+                  <h5 class="title is-5 is-flex"><span id="current-max">...</span><span class="is-size-7 scale">ºC</span></h5>
                 </div>
               </div>
             </footer>

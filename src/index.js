@@ -1,5 +1,6 @@
 import 'bulma/css/bulma.css';
 import './style.css';
+import 'bulma-switch';
 import { transitionHiddenElement } from '@cloudfour/transition-hidden-element';
 import weatherManager from './weather';
 import geoLocation from './geolocation';
@@ -12,6 +13,8 @@ const matchList = domManipulation.getHtmlElement({ byId: 'matches' });
 const getWeatherBtn = domManipulation.getHtmlElement({ byId: 'search-btn' });
 const downArrow = domManipulation.getHtmlElement({ byId: 'down-arrow' });
 const cardFooter = domManipulation.getHtmlElement({ byQueryClass: '.card-footer' });
+const tempSwitchContainer = domManipulation.getHtmlElement({ byQueryClass: '.switch-container' });
+const tempSwitch = domManipulation.getHtmlElement({ byQueryClass: '.switch' });
 const menuTransitioner = transitionHiddenElement({
   element: cardFooter,
   visibleClass: 'is-cf-active',
@@ -47,16 +50,30 @@ matchList.addEventListener('click', (e) => {
   }
 });
 
+const retrieveData = async () => {
+  const weatherData = await weatherManager.getWeatherData(geoLocation.coordinates.lat,
+    geoLocation.coordinates.lon);
+  return weatherData;
+};
+
 getWeatherBtn.addEventListener('click', async (e) => {
   e.preventDefault();
   const form = domManipulation.getHtmlElement({ byQueryClass: '.form' });
-  const data = await weatherManager.getWeatherData(geoLocation.coordinates.lat,
-    geoLocation.coordinates.lon);
-  render.renderCurrentWeather(inputCity.value, data);
+  const data = await retrieveData();
+  render.renderCurrentWeather(data, render.tempScale, inputCity.value);
   form.reset();
+  if (!tempSwitchContainer.classList.contains('is-switch-active')) {
+    domManipulation.addClasses(tempSwitchContainer, ['is-switch-active']);
+  }
 });
 
 downArrow.addEventListener('click', () => {
   domManipulation.toggleClass(downArrow, 'is-active');
   menuTransitioner.toggle();
+});
+
+tempSwitch.addEventListener('click', async () => {
+  render.tempScale = !render.tempScale;
+  const data = await retrieveData();
+  render.renderCurrentWeather(data, render.tempScale);
 });

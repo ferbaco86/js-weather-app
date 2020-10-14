@@ -3,6 +3,20 @@ import data from './data.json';
 import convertion from './tempConvertion';
 
 const render = (() => {
+  const tempScale = domManipulation.getHtmlElement({ byId: 'switch' }).checked;
+
+  const renderCelsius = (weatherInfo) => {
+    const tempCelsius = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
+      .map(key => weatherInfo.current[key]);
+    return tempCelsius;
+  };
+
+  const renderFarenheit = (weatherInfo) => {
+    const tempFarenheit = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
+      .map(key => convertion.farenheitToCelsius(weatherInfo.current[key]));
+    return tempFarenheit;
+  };
+
   const renderMatches = (matches, matchList) => {
     if (matches.length > 0) {
       const html = matches.map(match => `<div class="card mb-2 match" data-lat = "${match.lat}" data-lon = "${match.lon}">
@@ -24,7 +38,16 @@ const render = (() => {
     }
   };
 
-  const renderCurrentWeather = (currentCity, weatherInfo) => {
+  const setTemps = (tempElement, feelElement, minElement, maxElement, temps) => {
+    const roundedTemps = temps.map(temp => Math.round(temp));
+    domManipulation.setInnerHtml(tempElement, roundedTemps[0]);
+    domManipulation.setInnerHtml(feelElement, roundedTemps[1]);
+    domManipulation.setInnerHtml(minElement, roundedTemps[2]);
+    domManipulation.setInnerHtml(maxElement, roundedTemps[3]);
+  };
+
+  const renderCurrentWeather = (weatherInfo, tempScale, currentCity = null) => {
+    const scalesText = domManipulation.getHtmlElement({ byQueryAllClass: '.scale' });
     const cityTitle = domManipulation.getHtmlElement({ byId: 'current-city' });
     const currentTemp = domManipulation.getHtmlElement({ byId: 'current-temp' });
     const currentFeel = domManipulation.getHtmlElement({ byId: 'current-feel' });
@@ -32,32 +55,30 @@ const render = (() => {
     const currentMax = domManipulation.getHtmlElement({ byId: 'current-max' });
     const currentIcon = weatherInfo.current.icon;
 
-    domManipulation.setInnerHtml(cityTitle, currentCity);
-    domManipulation.setInnerHtml(currentTemp, weatherInfo.current.temp);
-    domManipulation.setInnerHtml(currentFeel, weatherInfo.current.feels);
-    domManipulation.setInnerHtml(currentMin, weatherInfo.current.min);
-    domManipulation.setInnerHtml(currentMax, weatherInfo.current.max);
+    if (currentCity !== null) {
+      domManipulation.setInnerHtml(cityTitle, currentCity);
+    }
+
+
+    if (!tempScale) {
+      scalesText.forEach(scale => (domManipulation.setInnerHtml(scale, 'ºC')));
+      const celsiusTemps = renderCelsius(weatherInfo);
+      setTemps(currentTemp, currentFeel, currentMin, currentMax, celsiusTemps);
+    } else {
+      scalesText.forEach(scale => (domManipulation.setInnerHtml(scale, 'ºF')));
+      const farenheitTemps = renderFarenheit(weatherInfo);
+      setTemps(currentTemp, currentFeel, currentMin, currentMax, farenheitTemps);
+    }
 
 
     renderWeatherIcon(data, currentIcon);
-  };
-
-  const renderCelsius = (weatherInfo) => {
-    const tempCelsius = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
-      .map(key => weatherInfo.current[key]);
-    return tempCelsius;
-  };
-
-  const renderFarenheit = (weatherInfo) => {
-    const tempFarenheit = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
-      .map(key => convertion.farenheitToCelsius(weatherInfo.current[key]));
-    return tempFarenheit;
   };
   return {
     renderMatches,
     renderCurrentWeather,
     renderCelsius,
     renderFarenheit,
+    tempScale,
   };
 })();
 
