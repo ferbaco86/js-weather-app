@@ -1,5 +1,5 @@
 # js-weather-app
-A minimalistic weather web application created with javascript and OpenWeatherMap API and geolocation
+A minimalistic weather web application created with javascript, OpenWeatherMap API and geolocation
 
 ## Main Features
 
@@ -45,7 +45,6 @@ This is the structure you must follow:
 ````
 WEATHER_API_KEY = ############
 IQ_ACCESS_KEY = #############
-
 ```
 
 Then, install the dependencies of the project with this command:
