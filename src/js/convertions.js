@@ -1,10 +1,10 @@
 const convertion = (() => {
-  const farenheitToCelsius = (farenheit) => {
-    const newTemp = (farenheit - 32) * (5 / 9);
+  const fahrenheitToCelsius = (fahrenheit) => {
+    const newTemp = (fahrenheit - 32) * (5 / 9);
     return newTemp;
   };
 
-  const celsiusToFarenheit = (celsius) => {
+  const celsiusToFahrenheit = (celsius) => {
     const newTemp = (celsius * (9 / 5)) + 32;
     return newTemp;
   };
@@ -15,8 +15,8 @@ const convertion = (() => {
     return newDate.toLocaleString('en-US', { weekday: 'long' });
   };
   return {
-    celsiusToFarenheit,
-    farenheitToCelsius,
+    celsiusToFahrenheit,
+    fahrenheitToCelsius,
     unixTimestampToWeekDay,
   };
 })();

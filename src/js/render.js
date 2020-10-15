@@ -44,20 +44,20 @@ const render = (() => {
     return weeklyTempCelsius;
   };
 
-  const renderFarenheit = (weatherInfo) => {
-    const tempFarenheit = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
-      .map(key => convertion.celsiusToFarenheit(weatherInfo.current[key]));
-    return tempFarenheit;
+  const renderFahrenheit = (weatherInfo) => {
+    const tempFahrenheit = Object.keys(weatherInfo.current).filter(key => key !== 'icon')
+      .map(key => convertion.celsiusToFahrenheit(weatherInfo.current[key]));
+    return tempFahrenheit;
   };
 
-  const renderWeeklyFarenheit = (weatherInfo) => {
-    const weeklyTempFarenheit = [];
-    const weeklyInfoFarenheit = Object.keys(weatherInfo).filter(key => key !== 'current')
+  const renderWeeklyFahrenheit = (weatherInfo) => {
+    const weeklyTempFahrenheit = [];
+    const weeklyInfoFahrenheit = Object.keys(weatherInfo).filter(key => key !== 'current')
       .map(key => weatherInfo[key]);
-    weeklyInfoFarenheit.forEach(temp => weeklyTempFarenheit.push(Object.keys(temp)
+    weeklyInfoFahrenheit.forEach(temp => weeklyTempFahrenheit.push(Object.keys(temp)
       .filter(key => key !== 'icon' && key !== 'dt')
-      .map(key => convertion.celsiusToFarenheit(temp[key]))));
-    return weeklyTempFarenheit;
+      .map(key => convertion.celsiusToFahrenheit(temp[key]))));
+    return weeklyTempFahrenheit;
   };
 
   const renderMatches = (matches, matchList) => {
@@ -155,11 +155,11 @@ const render = (() => {
       setTemps(currentTemp, currentFeel, currentMin, currentMax, celsiusTemps);
     } else {
       scalesText.forEach(scale => (domManipulation.setInnerHtml(scale, 'ºF')));
-      const farenheitTemps = renderFarenheit(weatherInfo);
-      const weeklyFarenheitTemps = renderWeeklyFarenheit(weatherInfo);
-      weeklyMin.forEach((min, index) => { setMinWeeklyTemps(min, weeklyFarenheitTemps, index); });
-      weeklyMax.forEach((max, index) => { setMaxWeeklyTemps(max, weeklyFarenheitTemps, index); });
-      setTemps(currentTemp, currentFeel, currentMin, currentMax, farenheitTemps);
+      const fahrenheitTemps = renderFahrenheit(weatherInfo);
+      const weeklyFahrenheitTemps = renderWeeklyFahrenheit(weatherInfo);
+      weeklyMin.forEach((min, index) => { setMinWeeklyTemps(min, weeklyFahrenheitTemps, index); });
+      weeklyMax.forEach((max, index) => { setMaxWeeklyTemps(max, weeklyFahrenheitTemps, index); });
+      setTemps(currentTemp, currentFeel, currentMin, currentMax, fahrenheitTemps);
     }
 
     weeklyIconsElement.forEach((icon, index) => {
@@ -185,7 +185,7 @@ const render = (() => {
     renderCurrentWeather,
     renderCelsius,
     renderWeeklyCelsius,
-    renderFarenheit,
+    renderFahrenheit,
     renderError,
     removeError,
     tempScale,
