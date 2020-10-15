@@ -1,19 +1,11 @@
 
-.body {
-    font-family: 'Varela Round', sans-serif !important;
-}
-
 .match {
-    background-color: lightgoldenrodyellow;
+    background-color: snow;
 }
 
 .match:hover {
     cursor: pointer;
-    background-color: aquamarine;
-}
-
-.country {
-    color: darkgoldenrod;
+    background-color: azure;
 }
 
 .title.is-1 {
@@ -22,7 +14,7 @@
 
 #current-city {
     font-size: 0.9em;
-    color: lightgray;
+    color: grey;
 }
 
 h1 {
@@ -81,4 +73,63 @@ label {
 
 small {
     font-size: 0.7rem;
+}
+
+.match {
+    transition: opacity 800ms ease;
+    will-change: opacity;
+}
+
+.match.fade {
+    opacity: 0;
+}
+
+.b01d,
+.b02d{
+    background: linear-gradient(63deg, 
+    rgba(255,255,255,0.35056029247636555) 1%, 
+    rgba(255,255,254,0.0536415249693627) 55%,
+    rgba(20,36,147,0.35056029247636555) 84%)
+}
+
+.b01n,
+.b02n,
+.b03n,
+.b04n,
+.b13n {
+    background: linear-gradient(63deg, 
+    rgba(255,255,255,0.35056029247636555) 1%, 
+    rgba(0,0,0,0.0536415249693627) 55%, 
+    rgba(0,0,0,0.35056029247636555) 84%);
+}
+
+.b09d,
+.b09n,
+.b10d,
+.b10n {
+    background: linear-gradient(63deg, 
+    rgba(255,255,255,0.35056029247636555) 1%,
+    rgba(255,253,228,1) 55%, 
+    rgba(0,90,167,1) 84%);
+}
+
+.b03d,
+.b04d {
+    background: linear-gradient(63deg, 
+    rgba(255,255,255,0.35056029247636555) 1%,
+     rgba(255,255,240,1) 55%, 
+     rgba(236,233,224,1) 84%);
+}
+
+.b13d {
+    background: linear-gradient(63deg, 
+    rgba(255,255,255,0.35056029247636555) 1%, 
+    rgba(0,78,146,1) 55%, rgba(0,4,40,1) 84%);
+}
+
+.b11d,
+.b11n {
+    background: linear-gradient(63deg, 
+    rgba(255,255,255,0.35056029247636555) 1%, 
+    rgba(243,249,167,1) 55%, rgba(202,197,49,1) 84%);
 }

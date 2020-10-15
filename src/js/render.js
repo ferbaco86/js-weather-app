@@ -6,6 +6,17 @@ import convertion from './convertions';
 const render = (() => {
   const tempScale = domManipulation.getHtmlElement({ byId: 'switch' }).checked;
 
+  const renderBackgroundColor = (iconCode) => {
+    const currentWeatherCard = domManipulation.getHtmlElement({ byQueryClass: '.card' });
+    currentWeatherCard.classList.forEach((bgClass) => {
+      if (bgClass !== 'card' && bgClass !== 'column') {
+        domManipulation.removeClasses(currentWeatherCard, [bgClass]);
+      }
+      domManipulation.addClasses(currentWeatherCard, [`b${iconCode}`]);
+    });
+    domManipulation.addClasses(currentWeatherCard, [`b${iconCode}`]);
+  };
+
   const renderError = (message, messageTransition) => {
     const text = domManipulation.getHtmlElement({ byId: 'message-text' });
     domManipulation.setInnerHtml(text, message);
@@ -51,10 +62,14 @@ const render = (() => {
 
   const renderMatches = (matches, matchList) => {
     if (matches.length > 0) {
-      const html = matches.map(match => `<div class="card mb-2 match" data-lat = "${match.lat}" data-lon = "${match.lon}">
+      const html = matches.map(match => `<div class="card mb-2 match fade" data-lat = "${match.lat}" data-lon = "${match.lon}">
       <h5 class ="p-2">${match.address.name}, ${match.address.country}</h5>
       </div>`).join('');
       matchList.innerHTML = html;
+      setTimeout(() => {
+        const suggestions = domManipulation.getHtmlElement({ byQueryAllClass: '.match' });
+        suggestions.forEach(item => domManipulation.removeClasses(item, ['fade']));
+      }, 70);
     } else {
       matchList.innerHTML = '';
     }
@@ -163,6 +178,7 @@ const render = (() => {
       convertion.unixTimestampToWeekDay(weeklyDaysDt[index])));
 
     renderWeatherIcon(data, currentIcon);
+    renderBackgroundColor(currentIcon);
   };
   return {
     renderMatches,

@@ -79,7 +79,7 @@ getWeatherBtn.addEventListener('click', async (e) => {
   const matches = domManipulation.getHtmlElement({ byQueryAllClass: '.match' });
   const inputCheck = validations.checkInput(matches, inputCity, messageTransitioner);
   if (inputCity.validity.valueMissing || inputCheck) {
-    render.renderError('INCORRECT CITY ON INPUT...', messageTransitioner);
+    render.renderError('INCORRECT CITY ON INPUT', messageTransitioner);
     domManipulation.addClasses(inputCity, ['is-danger']);
   } else {
     inputCity.setCustomValidity('');
