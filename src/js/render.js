@@ -72,6 +72,17 @@ const render = (() => {
     }
   };
 
+  const renderWeeklyIcon = (weatherInfo) => {
+    const weeklyIcons = [];
+    const weeklyInfo = Object.keys(weatherInfo).filter(key => key !== 'current')
+      .map(key => weatherInfo[key]);
+    weeklyInfo.forEach(icon => weeklyIcons.push(Object.keys(icon)
+      .filter(key => key === 'icon')
+      .map(key => (icon[key]))));
+    return weeklyIcons;
+  };
+
+
   const setTemps = (tempElement, feelElement, minElement, maxElement, temps) => {
     const roundedTemps = roundTemps(temps);
     domManipulation.setInnerHtml(tempElement, roundedTemps[0]);
@@ -99,12 +110,14 @@ const render = (() => {
     const currentMax = domManipulation.getHtmlElement({ byId: 'current-max' });
     const weeklyMin = domManipulation.getHtmlElement({ byQueryAllClass: '.week-min' });
     const weeklyMax = domManipulation.getHtmlElement({ byQueryAllClass: '.week-max' });
+    const weeklyIconsElement = domManipulation.getHtmlElement({ byQueryAllClass: '.week-icon' });
+    const weeklyIconsCodes = renderWeeklyIcon(weatherInfo);
+
     const currentIcon = weatherInfo.current.icon;
 
     if (currentCity !== null) {
       domManipulation.setInnerHtml(cityTitle, currentCity);
     }
-
 
     if (!tempScale) {
       scalesText.forEach(scale => (domManipulation.setInnerHtml(scale, 'ºC')));
@@ -122,6 +135,17 @@ const render = (() => {
       setTemps(currentTemp, currentFeel, currentMin, currentMax, farenheitTemps);
     }
 
+    weeklyIconsElement.forEach((icon, index) => {
+      icon.classList.forEach((iconClass) => {
+        if (iconClass !== 'wi' && iconClass !== 'title'
+        && iconClass !== 'is-3' && iconClass !== 'mb-5'
+        && iconClass !== 'week-icon') {
+          domManipulation.removeClasses(icon, [iconClass]);
+        }
+      });
+
+      domManipulation.addClasses(icon, [`wi-owm-${weeklyIconsCodes[index]}`]);
+    });
 
     renderWeatherIcon(data, currentIcon);
   };
