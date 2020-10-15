@@ -1,6 +1,7 @@
 import 'bulma/css/bulma.css';
-import './style.css';
+import '../css/style.css';
 import 'bulma-switch';
+import 'weathericons/css/weather-icons.css';
 import { transitionHiddenElement } from '@cloudfour/transition-hidden-element';
 import weatherManager from './weather';
 import geoLocation from './geolocation';
@@ -8,6 +9,7 @@ import domManipulation from './DOMhelpers';
 import stringManipulation from './stringHelpers';
 import render from './render';
 import validations from './validation';
+
 
 const inputCity = domManipulation.getHtmlElement({ byId: 'search' });
 const matchList = domManipulation.getHtmlElement({ byId: 'matches' });
