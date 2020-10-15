@@ -29,7 +29,7 @@ A minimalistic weather web application created with javascript, OpenWeatherMap A
 
 ## Live Demo
 
-[To-Do List live version](https://weather-js-app.netlify.app/)
+[JS Weather App live version](https://weather-js-app.netlify.app/)
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ First, you need to create a .env file in your root folder with the necessaries A
 ([OpenWeatherMap](https://openweathermap.org/appid) and [LocationIQ](https://locationiq.com/register)))
 This is the structure you must follow:
 
-````
+```
 WEATHER_API_KEY = ############
 IQ_ACCESS_KEY = #############
 ```
