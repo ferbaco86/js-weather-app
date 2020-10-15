@@ -13,39 +13,40 @@ const weatherManager = (() => {
         icon: data.current.weather[0].icon,
       },
       day1: {
-        temp: data.daily[1].temp.day,
+        dt: data.daily[1].dt,
         min: data.daily[1].temp.min,
         max: data.daily[1].temp.max,
+        icon: data.daily[1].weather[0].id,
       },
       day2: {
-        temp: data.daily[2].temp.day,
+        dt: data.daily[2].dt,
         min: data.daily[2].temp.min,
         max: data.daily[2].temp.max,
+        icon: data.daily[2].weather[0].id,
       },
       day3: {
-        temp: data.daily[3].temp.day,
+        dt: data.daily[3].dt,
         min: data.daily[3].temp.min,
         max: data.daily[3].temp.max,
+        icon: data.daily[3].weather[0].id,
       },
       day4: {
-        temp: data.daily[4].temp.day,
+        dt: data.daily[4].dt,
         min: data.daily[4].temp.min,
         max: data.daily[4].temp.max,
+        icon: data.daily[4].weather[0].id,
       },
       day5: {
-        temp: data.daily[5].temp.day,
+        dt: data.daily[5].dt,
         min: data.daily[5].temp.min,
         max: data.daily[5].temp.max,
+        icon: data.daily[5].weather[0].id,
       },
       day6: {
-        temp: data.daily[6].temp.day,
+        dt: data.daily[6].dt,
         min: data.daily[6].temp.min,
         max: data.daily[6].temp.max,
-      },
-      day7: {
-        temp: data.daily[7].temp.day,
-        min: data.daily[7].temp.min,
-        max: data.daily[7].temp.max,
+        icon: data.daily[6].weather[0].id,
       },
     };
     return info;
