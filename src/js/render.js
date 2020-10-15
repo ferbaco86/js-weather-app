@@ -1,7 +1,7 @@
 
 import domManipulation from './DOMhelpers';
 import data from './data.json';
-import convertion from './tempConvertion';
+import convertion from './convertions';
 
 const render = (() => {
   const tempScale = domManipulation.getHtmlElement({ byId: 'switch' }).checked;
@@ -82,6 +82,16 @@ const render = (() => {
     return weeklyIcons;
   };
 
+  const renderDt = (weatherInfo) => {
+    const weeklyDt = [];
+    const weeklyInfo = Object.keys(weatherInfo).filter(key => key !== 'current')
+      .map(key => weatherInfo[key]);
+    weeklyInfo.forEach(dt => weeklyDt.push(Object.keys(dt)
+      .filter(key => key === 'dt')
+      .map(key => (dt[key]))));
+    return weeklyDt;
+  };
+
 
   const setTemps = (tempElement, feelElement, minElement, maxElement, temps) => {
     const roundedTemps = roundTemps(temps);
@@ -111,7 +121,9 @@ const render = (() => {
     const weeklyMin = domManipulation.getHtmlElement({ byQueryAllClass: '.week-min' });
     const weeklyMax = domManipulation.getHtmlElement({ byQueryAllClass: '.week-max' });
     const weeklyIconsElement = domManipulation.getHtmlElement({ byQueryAllClass: '.week-icon' });
+    const weeklyDaysTitle = domManipulation.getHtmlElement({ byQueryAllClass: '.week-title' });
     const weeklyIconsCodes = renderWeeklyIcon(weatherInfo);
+    const weeklyDaysDt = renderDt(weatherInfo);
 
     const currentIcon = weatherInfo.current.icon;
 
@@ -146,6 +158,9 @@ const render = (() => {
 
       domManipulation.addClasses(icon, [`wi-owm-${weeklyIconsCodes[index]}`]);
     });
+
+    weeklyDaysTitle.forEach((title, index) => domManipulation.setInnerHtml(title,
+      convertion.unixTimestampToWeekDay(weeklyDaysDt[index])));
 
     renderWeatherIcon(data, currentIcon);
   };

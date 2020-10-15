@@ -42,12 +42,6 @@ const weatherManager = (() => {
         max: data.daily[5].temp.max,
         icon: data.daily[5].weather[0].id,
       },
-      day6: {
-        dt: data.daily[6].dt,
-        min: data.daily[6].temp.min,
-        max: data.daily[6].temp.max,
-        icon: data.daily[6].weather[0].id,
-      },
     };
     return info;
   };
