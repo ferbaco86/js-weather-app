@@ -1,0 +1,152 @@
+
+.match {
+  background-color: snow;
+  transition: opacity 800ms ease;
+  will-change: opacity;
+}
+
+.match:hover {
+  cursor: pointer;
+  background-color: azure;
+}
+
+.match.fade {
+  opacity: 0;
+}
+
+.title.is-1 {
+  font-size: 4em !important;
+}
+
+#current-city {
+  font-size: 0.9em;
+  color: grey;
+}
+
+h1 {
+  margin-bottom: 1rem !important;
+}
+
+.wicon {
+  width: 100px;
+}
+
+#down-arrow {
+  fill: lightgray;
+  width: 3.5%;
+  margin-left: 50%;
+  margin-top: 2%;
+  margin-bottom: -5%;
+  align-self: flex-end;
+  transition: transform 300ms ease;
+}
+
+.card-footer {
+  display: none;
+  height: 0;
+  visibility: hidden;
+  transition: all 500ms ease;
+}
+
+.is-active {
+  transform: rotate(180deg);
+}
+
+.is-cf-active {
+  visibility: visible;
+  height: 100px;
+  display: flex;
+}
+
+article {
+  display: none;
+  opacity: 0;
+  transition: all 400ms ease-in-out;
+}
+
+.is-message-active {
+  opacity: 1;
+}
+
+#down-arrow:hover {
+  cursor: pointer;
+}
+
+label {
+  font-weight: bold;
+  font-size: medium;
+}
+
+small {
+  font-size: 0.7rem;
+}
+
+.b01d,
+.b02d {
+  background:
+    linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.35056029247636555) 1%,
+      rgba(255, 255, 254, 0.0536415249693627) 55%,
+      rgba(20, 36, 147, 0.35056029247636555) 84%
+    );
+}
+
+.b01n,
+.b02n,
+.b03n,
+.b04n,
+.b13n {
+  background:
+    linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.35056029247636555) 1%,
+      rgba(0, 0, 0, 0.0536415249693627) 55%,
+      rgba(0, 0, 0, 0.35056029247636555) 84%
+    );
+}
+
+.b09d,
+.b09n,
+.b10d,
+.b10n {
+  background:
+    linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.35056029247636555) 1%,
+      rgba(255, 253, 228, 1) 55%,
+      rgba(0, 90, 167, 1) 84%
+    );
+}
+
+.b03d,
+.b04d {
+  background:
+    linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.35056029247636555) 1%,
+      rgba(255, 255, 240, 1) 55%,
+      rgba(236, 233, 224, 1) 84%
+    );
+}
+
+.b13d {
+  background:
+    linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.35056029247636555) 1%,
+      rgba(0, 78, 146, 1) 55%,
+      rgba(0, 4, 40, 1) 84%
+    );
+}
+
+.b11d,
+.b11n {
+  background:
+    linear-gradient(
+      63deg,
+      rgba(255, 255, 255, 0.35056029247636555) 1%,
+      rgba(243, 249, 167, 1) 55%,
+      rgba(202, 197, 49, 1) 84%
+    );
+}

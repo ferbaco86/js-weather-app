@@ -1,0 +1,50 @@
+{
+  "name": "js-weather-app",
+  "version": "1.0.0",
+  "description": "A weather web application created with javascript and OpenWeatherMap API",
+  "main": "index.js",
+  "dependencies": {
+    "@cloudfour/transition-hidden-element": "^2.0.2",
+    "babel-eslint": "^10.1.0",
+    "bulma": "^0.9.1",
+    "bulma-switch": "^2.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.8.0",
+    "stylelint-scss": "^3.17.2",
+    "weathericons": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/leaflet-geosearch": "^2.7.1",
+    "css-loader": "^4.3.0",
+    "css-minimizer-webpack-plugin": "^1.1.5",
+    "dotenv-webpack": "^3.0.0",
+    "file-loader": "^6.1.1",
+    "mini-css-extract-plugin": "^1.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development",
+    "build:prod": "webpack --mode production",
+    "start": "webpack-dev-server --host 0.0.0.0 --port 7000",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferbaco86/js-weather-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferbaco86/js-weather-app/issues"
+  },
+  "homepage": "https://github.com/ferbaco86/js-weather-app#readme"
+}

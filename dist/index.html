@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./style/main.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css" integrity="sha512-Fdq8QvrEd3TD4heN8gNTOl79sAZR7zsiHIDQbE5eEBxx8pPfb/yJHaBWxhoG7SNcQiBmrrUHlg5TiNX4ovt6Jg==" crossorigin="anonymous" />
+  <title>JS Weather App</title>
+</head>
+<body>
+  <main class="section p-6">
+    <div class="field switch-container">
+      <label for="switch">ºC</label>
+      <input id="switch" type="checkbox" name="switch" class="switch">
+      <label for="switch">ºF</label>
+    </div>
+    <section class="section container column is-half">
+        <form class="form">
+          <article class="message is-danger">
+            <div class="message-header">
+              <p>ERROR</p>
+            </div>
+            <div class="message-body">
+              <p id="message-text">
+              </p>
+            </div>
+          </article>
+          <div class="field has-addons">
+            <p class="control is-flex-grow-1">
+              <input id="search" type="text" class="input" placeholder="Type your city and select it from the list ..." required>
+            </p>
+            <p class="control">
+              <input id = "search-btn"type="submit" class="button" value="Get Weather">
+            </p>
+          </div>
+          <div id="matches" class="field"></div>
+        </form>
+        <div class="card column">
+            <div class="card-content">
+              <div class="is-flex is-justify-content-space-between is-flex-grow-1">
+                <div class class="is-flex is-flex-direction-column">
+                  <h1 class="title is-1 is-flex">
+                    <span id="current-temp">...</span>
+                    <span class="is-size-7 mt-2 scale">ºC</span>
+                  </h1>
+                  <p class="title is-6" id=current-city>...</p>
+                </div>
+                <div id="wicon-container"></div>
+              </div>
+              <svg version="1.1" id="down-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 284.929 284.929">
+                <g>
+                  <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441 
+                  L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082 
+                  c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647 
+                  c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z"/>
+                </g>
+              </svg>
+            </div>
+            <footer class="card-footer">
+              <div class="card-footer-item is-flex-direction-column">
+                  <h5 class="title is-5 has-text-centered">Feels like</h5>
+                  <h5 class="title is-5 is-flex"><span id="current-feel">...</span><span class="is-size-7 scale">ºC</span></h5>
+              </div>
+              <div class="card-footer-item is-flex-direction-column">
+                <div class="title is-justify-content-center">
+                  <h5 class="title is-5 has-text-centered">Min</h5>
+                </div>
+                <div class="has-text-centered">
+                  <h5 class="title is-5 is-flex"><span id="current-min">...</span><span class="is-size-7 scale">ºC</span></h5>
+                </div>
+              </div>
+              <div class="card-footer-item is-flex-direction-column">
+                <div class="title is-justify-content-center">
+                  <h5 class="title is-5 has-text-centered">Max</h5>
+                </div>
+                <div class="has-text-centered">
+                  <h5 class="title is-5 is-flex"><span id="current-max">...</span><span class="is-size-7 scale">ºC</span></h5>
+                </div>
+              </div>
+            </footer>
+        </div>
+      </section>
+    <section class="section">
+      <div class="box">
+        <div class="level">
+          <div class="level-item is-flex-direction-column">
+            <h6 class="title is-6 mb-5 ml-1 is-flex">
+              <span class="week-min ml-2">10</span>
+              <span>/</span>
+              <span class="week-max">34</span>
+              <small class="scale">ºC</small>
+            </h6>
+            <i class="wi wi-owm-200 title is-3 mb-5 week-icon"></i>
+            <h6 class="title is-6 week-title">TUE</h6>
+          </div>
+          <div class="level-item is-flex-direction-column">
+            <h6 class="title is-6 mb-5 ml-1 is-flex">
+              <span class="week-min ml-2">10</span>
+              <span>/</span>
+              <span class="week-max">34</span>
+              <small class="scale">ºC</small>
+            </h6>
+            <i  class="wi wi-owm-200 title is-3 mb-5 week-icon"></i>
+            <h6 class="title is-6 week-title">TUE</h6>
+          </div>
+          <div class="level-item is-flex-direction-column">
+            <h6 class="title is-6 mb-5 ml-1 is-flex">
+              <span class="week-min ml-2">10</span>
+              <span>/</span>
+              <span class="week-max">34</span>
+              <small class="scale">ºC</small>
+            </h6>
+            <i class="wi wi-owm-200 title is-3 mb-5 week-icon"></i>
+            <h6 class="title is-6 week-title">TUE</h6>
+          </div>
+          <div class="level-item is-flex-direction-column">
+            <h6 class="title is-6 mb-5 ml-1 is-flex">
+              <span class="week-min ml-2">10</span>
+              <span>/</span>
+              <span class="week-max">34</span>
+              <small class="scale">ºC</small>
+            </h6>
+            <i class="wi wi-owm-200 title is-3 mb-5 week-icon"></i>
+            <h6 class="title is-6 week-title">TUE</h6>
+          </div>
+          <div class="level-item is-flex-direction-column">
+            <h6 class="title is-6 mb-5 ml-1 is-flex">
+              <span class="week-min ml-2">10</span>
+              <span>/</span>
+              <span class="week-max">34</span>
+              <small class="scale">ºC</small>
+            </h6>
+            <i class="wi wi-owm-200 title is-3 mb-5 week-icon"></i>
+            <h6 class="title is-6 week-title">TUE</h6>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <script src="./main.js"></script>
+</body>
+</html>
